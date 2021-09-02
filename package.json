@@ -3,10 +3,10 @@
     "displayName": "datedfile",
     "description": "Create files based on a date format",
     "publisher": "chrisdavison",
-    "homepage": "https://github.com/chrisdavison/vscode-datedfile",
+    "homepage": "https://github.com/chrisdavison/datedfile-vscode",
     "repository": {
         "type": "git",
-        "url": "https://github.com/chrisdavison/vscode-datedfile.git"
+        "url": "https://github.com/chrisdavison/datedfile-vscode.git"
     },
     "version": "0.0.1",
     "engines": {
