@@ -9,3 +9,4 @@ node_modules
 .vscode/tasks.json
 .vscodeignore
 package-lock.json
+vsc-extension-quickstart.md
