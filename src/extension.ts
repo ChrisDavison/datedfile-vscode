@@ -16,20 +16,28 @@ export function activate(context: vscode.ExtensionContext) {
 
     let makeLogbook = vscode.commands.registerCommand('datedfile.logbook_today', () => {
         let date = new Date();
-        let fmt = vscode.workspace.getConfiguration("datedfile").get("date_format", "YYYY-MM-DD-dddd");
-        let hfmt = vscode.workspace.getConfiguration("datedfile").get("date_format", "YYYY-MM-DD dddd");
+        let config = vscode.workspace.getConfiguration("datedfile");
+        let fmt = config.get("logbook_filename_format", "YYYY/MM--MMMM/YYYY-MM-DD");
+        let hfmt = config.get("logbook_header_format", "YYYY-MM-DD dddd");
         let datestr = (moment(date)).format(fmt);
         let header = `# ${(moment(date)).format(hfmt)}\n\n@logbook @work`;
-        let direc = vscode.workspace.getConfiguration("datedfile").get("directory", "");
+        let template = config.get("logbook_template", "");
+        let direc = config.get("directory_logbook", "");
 
         if (!direc) {
             vscode.window.showErrorMessage("Must set config: datedfile.directory");
             return;
         }
-        let file = path.join(direc, `${datestr}.md`);
+        let file = path.join(direc, `${datestr.toLowerCase()}.md`);
 
         if (!fs.existsSync(file)) {
             fs.appendFileSync(file, header);
+            if (template != "") {
+                template.split("\n").forEach(element => {
+                    fs.appendFileSync(file, template);
+                });
+
+            }
         }
 
         vscode.workspace.openTextDocument(file).then((doc) =>

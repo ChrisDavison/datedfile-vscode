@@ -8,34 +8,51 @@
         "type": "git",
         "url": "https://github.com/chrisdavison/datedfile-vscode.git"
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
-        "vscode": "^1.59.0"
+        "vscode": "^1.75.0"
     },
     "categories": [
         "Other"
     ],
-    "activationEvents": [
-        "onCommand:datedfile.logbook_today"
-    ],
+    "activationEvents": [ ],
     "main": "./out/extension.js",
     "contributes": {
         "configuration": {
             "title": "datedfile",
             "properties": {
-                "datedfile.date_format": {
+                "datedfile.logbook_filename_format": {
                     "type": "string",
-                    "default": "YYYY-MM-DD-dddd",
-                    "description": "Date format for filename"
+                    "default": "YYYY/MM--MMMM/YYYY-MM-DD-dddd",
+                    "description": "Date format for logbook filename"
                 },
-                "datedfile.header_format": {
+                "datedfile.logbook_header_format": {
                     "type": "string",
                     "default": "YYYY-MM-DD dddd",
-                    "description": "Header format for filename"
+                    "description": "Date format for logbook header"
                 },
-                "datedfile.directory": {
+                "datedfile.logbook_template": {
                     "type": "string",
-                    "description": "Directory for file"
+                    "description": "Template to insert into file",
+                    "default": ""
+                },
+                "datedfile.directory_logbook": {
+                    "type": "string",
+                    "description": "Directory for a logbook"
+                },
+                "datedfile.note_filename_format": {
+                    "type": "string",
+                    "default": "YYYY-MM-DD-dddd",
+                    "description": "Date format for logbook filename"
+                },
+                "datedfile.note_header_format": {
+                    "type": "string",
+                    "default": "YYYY-MM-DD dddd",
+                    "description": "Date format for logbook header"
+                },
+                "datedfile.directory_inbox": {
+                    "type": "string",
+                    "description": "Directory for an inbox note"
                 }
             }
         },
@@ -43,6 +60,14 @@
             {
                 "command": "datedfile.logbook_today",
                 "title": "DatedFile: Today's Logbook"
+            },
+            {
+                "command": "datedfile.capture_note",
+                "title": "DatedFile: Capture Inbox Note"
+            },
+            {
+                "command": "datedfile:last_logbook",
+                "title": "DatedFile: View most recent logbook"
             }
         ]
     },
